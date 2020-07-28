@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { createTodoRequest } from "./thunks";
-import { getTodos } from "./selectors";
+import { createTodoRequest } from './thunks';
+import { getTodos } from './selectors';
 
 const FormContainer = styled.div`
     padding: 16px;
@@ -45,6 +46,11 @@ const NewTodoForm = ({ todos = [], onCreatePressed }) => {
                 }
             }}>Create</Button>
     </FormContainer>);
+};
+
+NewTodoForm.propTypes =  {
+    todos: PropTypes.array,
+    onCreatePressed: PropTypes.func,
 };
 
 // Gets the entire redux state from connect

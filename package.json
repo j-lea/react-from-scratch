@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "npx webpack-dev-server --mode development",
     "build": "npx webpack --mode development",
-    "test": "mocha \"src/**/*.test.js\" --require @babel/register --recursive"
+    "test": "mocha \"src/**/*.test.js\" --require @babel/register --recursive",
+    "lint": "eslint src/**/*.js"
   },
   "keywords": [],
   "author": "blah",
@@ -21,6 +22,8 @@
     "babel-loader": "^8.1.0",
     "chai": "^4.2.0",
     "css-loader": "^3.6.0",
+    "eslint": "^7.5.0",
+    "eslint-plugin-react": "^7.20.4",
     "fetch-mock": "^9.10.5",
     "mocha": "^8.0.1",
     "node-fetch": "^2.6.0",
@@ -32,6 +35,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.10.5",
+    "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-hot-loader": "^4.12.21",

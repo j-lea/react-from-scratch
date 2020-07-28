@@ -1,6 +1,6 @@
-import {createTodo, loadTodosFailure, loadTodosInProgress, loadTodosSuccess, removeTodo} from "./actions";
+import {createTodo, loadTodosFailure, loadTodosInProgress, loadTodosSuccess} from './actions';
 
-export const loadTodos = () => async(dispatch, getState) => {
+export const loadTodos = () => async(dispatch) => {
     dispatch(loadTodosInProgress());
     try {
         const response = await fetch('http://localhost:8080/todos');
@@ -13,7 +13,7 @@ export const loadTodos = () => async(dispatch, getState) => {
     }
 };
 
-export const createTodoRequest = text => async(dispatch, getState) => {
+export const createTodoRequest = text => async(dispatch) => {
     try {
         const body = JSON.stringify({ text });
         const response = await fetch('http://localhost:8080/todos', {
@@ -29,33 +29,31 @@ export const createTodoRequest = text => async(dispatch, getState) => {
     } catch (e) {
         dispatch(displayAlert(e));
     }
-}
+};
 
-export const removeTodoRequest = id => async(dispatch, getState) => {
+export const removeTodoRequest = id => async(dispatch) => {
     try {
-        const response = await fetch(`http://localhost:8080/todos/${id}`, {
-            method: 'delete'
+        await fetch(`http://localhost:8080/todos/${id}`, {
+            method: 'delete',
         });
-        const removedTodo = await response.json();
 
         dispatch(loadTodos());
     } catch (e) {
         dispatch(displayAlert(e));
     }
-}
+};
 
-export const completeTodoRequest = id => async(dispatch, getState) => {
+export const completeTodoRequest = id => async(dispatch) => {
     try {
-        const response = await fetch(`http://localhost:8080/todos/${id}/completed`, {
-            method: 'post'
+        await fetch(`http://localhost:8080/todos/${id}/completed`, {
+            method: 'post',
         });
-        const updatedTodo = await response.json();
 
         dispatch(loadTodos());
     } catch (e) {
         dispatch(displayAlert(e));
     }
-}
+};
 
 export const displayAlert = text => () => {
     alert(text);

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const TodoItemContainer = styled.div`
@@ -70,7 +71,18 @@ const TodoListItem = ({ todo, onRemovePressed, onCompletePressed }) => {
                 Remove
             </RemoveButton>
         </ButtonsContainer>
-    </Container>)
+    </Container>);
+};
+
+TodoListItem.propTypes =  {
+    todo: PropTypes.shape({
+        id: PropTypes.string,
+        text: PropTypes.string,
+        createdAt: PropTypes.date,
+        isCompleted: PropTypes.bool,
+    }),
+    onRemovePressed: PropTypes.func,
+    onCompletePressed: PropTypes.func,
 };
 
 export default TodoListItem;
